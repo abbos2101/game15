@@ -28,20 +28,21 @@ class _MainPageState extends State<MainPage> {
     for (int i = 0; i < 16; i++) {
       list.add(i);
     }
-    // do {
-    //   for (int i = 0; i < 16; i++) {
-    //     for (int j = 0; j < 16; j++) {
-    //       int a = rand.nextInt(16);
-    //       int b = rand.nextInt(16);
-    //       int c = list[a];
-    //       list[a] = list[b];
-    //       list[b] = c;
-    //     }
-    //   }
-    // } while (isSolvable(list));
+    do {
+      for (int i = 0; i < 16; i++) {
+        for (int j = 0; j < 16; j++) {
+          int a = rand.nextInt(16);
+          int b = rand.nextInt(16);
+          int c = list[a];
+          list[a] = list[b];
+          list[b] = c;
+        }
+      }
+    } while (isSolvable(list));
   }
 
   bool isSolvable(List<int> puzzle) {
+    //Xato ishlayapti!
     int parity = 0;
     int gridWidth = sqrt(puzzle.length).toInt();
     int row = 0;
@@ -111,6 +112,7 @@ class _MainPageState extends State<MainPage> {
                       MaterialButton(
                         onPressed: () => Navigator.pop(context),
                         color: Colors.blueGrey,
+                        textColor: Colors.white,
                         child: Text("Ok"),
                       ),
                     ],
@@ -139,9 +141,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(title: const Text("Game 15")),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.refresh),
-        onPressed: () {
-          print(isSolvable(list));
-        },
+        onPressed: createList,
       ),
       body: Center(
         child: Container(
